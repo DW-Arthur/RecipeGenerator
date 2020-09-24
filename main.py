@@ -30,22 +30,3 @@ def login():
     else:
         return 'This is a get request'
 
-@app.route('/login2', methods=['POST', 'GET'])
-def login():
-    error = None
-    if request.method == 'POST':
-        if valid_login(request.form['username'],
-                       request.form['password']):
-            return log_the_user_in(request.form['username'])
-        else:
-            error = 'Invalid username/password'
-    # the code below is executed if the request method
-    # was GET or the credentials were invalid
-    return render_template('login.html', error=error)
-
-#Similar to google search, might not need this
-searchword = request.args.get('q', '')@app.route('/')
-
-#Recipe
-
-
