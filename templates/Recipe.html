@@ -6,10 +6,11 @@
 <body>
 <h1>Free Recipe Generator</h1>
 <p>Enter Ingredients here; Maximum 8</p>
-<!--form gets user input-->
+<!-- form gets user input-->
 <!-- break is new line-->
 <!-- action makes a post request from action_page -->
 <!-- name is used for submitted, id is javascript and CSS -->
+<!-- take information from first textbox id, then take id into button onclick -->
 <form action="localhost:5000">
   <input type="text" id="first" name=""><br><br>
   <input type="text" id="second" name="lname"><br><br>
@@ -21,6 +22,18 @@
   <input type="text" id="eighth" name="lname"><br><br>
   <input type="submit" value="Submit for Recipe">
 </form>
+<!-- ` is differnent from ' , used for string formatting -->
+<button onclick="google()">Recipe Generator</button> <br><br>
 
+<script>
+<!-- can take data directly from info in form-->
+<!-- first form on the page, not first element of the form-->
+<!-- with just first, this will return all the object of the first input-->
+function google(){
+	var form1 = document.forms[0]
+	var first = form1.elements[0]	
+	window.open(`http://google.com/search?q=${first.value}`)
+}
+</script>
 </body>
 </html>

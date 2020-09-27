@@ -1,6 +1,5 @@
-from flask import Flask
-from flask import request
-from flask import abort, redirect, url_for
+from flask import Flask, request, abort, redirect, url_for, render_template
+
 
 # python's calls programs' modules 
 app = Flask(__name__)
@@ -9,8 +8,8 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def index():
-    return 'Index Page'
+def home():
+    return render_template('Recipe.html')
 
 @app.route('/recipe')
 def hello():
