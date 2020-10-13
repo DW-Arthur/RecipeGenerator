@@ -20,8 +20,8 @@
   <input type="text" id="sixth" name="lname"><br><br>
   <input type="text" id="seventh" name="fname"><br><br>
   <input type="text" id="eighth" name="lname"><br><br>
-  <input type="submit" value="Submit for Recipe">
 </form>
+
 <!-- ` is differnent from ' , used for string formatting -->
 <button onclick="google()">Recipe Generator</button> <br><br>
 
@@ -29,10 +29,15 @@
 <!-- can take data directly from info in form-->
 <!-- first form on the page, not first element of the form-->
 <!-- with just first, this will return all the object of the first input-->
+<!-- forms1.element is an object -->
 function google(){
+	var formsCollection = document.getElementsByTagName("form");
 	var form1 = document.forms[0]
-	var first = form1.elements[0]	
-	window.open(`http://google.com/search?q=${first.value}`)
+	var first = ""
+	for(var i = 0; i < form1.length; i++){
+		first =  first + " " + form1.elements[i].value	
+	}	
+	window.open(`http://google.com/search?q=${first} recipe`)
 }
 </script>
 </body>
