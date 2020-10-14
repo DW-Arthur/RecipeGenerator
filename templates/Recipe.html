@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+body {
+    text-align: center;
+}
+form {
+    display: inline-block;
+}
+</style>
 <title>Recipe Generator</title>
 </head>
 <body>
@@ -9,7 +17,7 @@
 <!-- form gets user input-->
 <!-- break is new line-->
 <!-- action makes a post request from action_page -->
-<!-- name is used for submitted, id is javascript and CSS -->
+<!-- name is used for submitted, id i javascript and CSS -->
 <!-- take information from first textbox id, then take id into button onclick -->
 <form action="localhost:5000">
   <input type="text" id="first" name=""><br><br>
@@ -20,10 +28,10 @@
   <input type="text" id="sixth" name="lname"><br><br>
   <input type="text" id="seventh" name="fname"><br><br>
   <input type="text" id="eighth" name="lname"><br><br>
+  <button onclick="google()">Recipe Generator</button> <br><br>
+  
 </form>
-
 <!-- ` is differnent from ' , used for string formatting -->
-<button onclick="google()">Recipe Generator</button> <br><br>
 
 <script>
 <!-- can take data directly from info in form-->
@@ -36,7 +44,7 @@ function google(){
 	var first = ""
 	for(var i = 0; i < form1.length; i++){
 		first =  first + " " + form1.elements[i].value	
-	}	
+	}
 	window.open(`http://google.com/search?q=${first} recipe`)
 }
 </script>
