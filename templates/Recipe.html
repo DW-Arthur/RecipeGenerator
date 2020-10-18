@@ -32,21 +32,35 @@ form {
   
 </form>
 <!-- ` is differnent from ' , used for string formatting -->
-
 <script>
+
 <!-- can take data directly from info in form-->
 <!-- first form on the page, not first element of the form-->
 <!-- with just first, this will return all the object of the first input-->
 <!-- forms1.element is an object -->
+<!-- fetch, returns object, promise means the fetch request is working in the background, s1 is the promise, once it's done, it will call the then function -->
+<!-- console.log(fetch(`https://api.spoonacular.com/recipes/findByIngredients`)) -->
 function google(){
 	var formsCollection = document.getElementsByTagName("form");
 	var form1 = document.forms[0]
 	var first = ""
 	for(var i = 0; i < form1.length; i++){
-		first =  first + " " + form1.elements[i].value	
+		if(i == 0){
+			first = form1.elements[i].value	
+		}else if(form1.elements[i].value != ""){
+			first =  first + "," + form1.elements[i].value
+		}
 	}
+	
 	window.open(`http://google.com/search?q=${first} recipe`)
+	var s1 = fetch(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=9105017d9e824e04a4c534ea357e2eba&ingredients=${first}`)
+	s1.then((val) => {
+		console.log(val)
+	})
+	
+	
 }
 </script>
+
 </body>
 </html>
