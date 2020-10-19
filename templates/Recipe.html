@@ -38,7 +38,9 @@ form {
 <!-- first form on the page, not first element of the form-->
 <!-- with just first, this will return all the object of the first input-->
 <!-- forms1.element is an object -->
-<!-- fetch, returns object, promise means the fetch request is working in the background, s1 is the promise, once it's done, it will call the then function -->
+<!-- fetch, returns object, (promise) is an object, which means the fetch request is working in the background,-->
+<!-- s1 is the promise, once it's done, the promise will take time, it will call the then function -->
+<!-- val is the result of the fetch, http, val.text is a function that returns a promise object-->
 <!-- console.log(fetch(`https://api.spoonacular.com/recipes/findByIngredients`)) -->
 function google(){
 	var formsCollection = document.getElementsByTagName("form");
@@ -52,13 +54,16 @@ function google(){
 		}
 	}
 	
-	window.open(`http://google.com/search?q=${first} recipe`)
+	<!-- window.open(`http://google.com/search?q=${first} recipe`) -->
 	var s1 = fetch(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=9105017d9e824e04a4c534ea357e2eba&ingredients=${first}`)
 	s1.then((val) => {
-		console.log(val)
+		console.log(val)		
+		var s2 = val.text()
+		s2.then((text) => {
+			var obj = JSON.parse(text)
+			window.alert(obj[0].title)
+		})		
 	})
-	
-	
 }
 </script>
 
