@@ -9,11 +9,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('Recipe.html')
+    return render_template('home.html')
 
-@app.route('/recipe')
-def hello():
-    return 'HongShaoRou is the best Rou'
 
 #Too many FB users (dynamic), %s is essentially printf
 @app.route('/user/<username>')
@@ -29,4 +26,7 @@ def login():
     else:
         return 'This is a get request'
 
-
+#template is a template that can be changed, templates is the blueprint that gets passed to javascript
+@app.route('/recipe/')
+def test():
+    return render_template('recipe.html', recipes = ["apple", "banana", "chicken"])

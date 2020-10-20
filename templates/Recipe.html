@@ -1,71 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-body {
-    text-align: center;
-}
-form {
-    display: inline-block;
-}
-</style>
-<title>Recipe Generator</title>
+
+<title>Recipe Results</title>
 </head>
 <body>
-<h1>Free Recipe Generator</h1>
-<p>Enter Ingredients here; Maximum 8</p>
-<!-- form gets user input-->
-<!-- break is new line-->
-<!-- action makes a post request from action_page -->
-<!-- name is used for submitted, id i javascript and CSS -->
-<!-- take information from first textbox id, then take id into button onclick -->
-<form action="localhost:5000">
-  <input type="text" id="first" name=""><br><br>
-  <input type="text" id="second" name="lname"><br><br>
-  <input type="text" id="third" name="fname"><br><br>
-  <input type="text" id="fourth" name="lname"><br><br>
-  <input type="text" id="fifth" name="fname"><br><br>
-  <input type="text" id="sixth" name="lname"><br><br>
-  <input type="text" id="seventh" name="fname"><br><br>
-  <input type="text" id="eighth" name="lname"><br><br>
-  <button onclick="google()">Recipe Generator</button> <br><br>
-  
-</form>
-<!-- ` is differnent from ' , used for string formatting -->
-<script>
-
-<!-- can take data directly from info in form-->
-<!-- first form on the page, not first element of the form-->
-<!-- with just first, this will return all the object of the first input-->
-<!-- forms1.element is an object -->
-<!-- fetch, returns object, (promise) is an object, which means the fetch request is working in the background,-->
-<!-- s1 is the promise, once it's done, the promise will take time, it will call the then function -->
-<!-- val is the result of the fetch, http, val.text is a function that returns a promise object-->
-<!-- console.log(fetch(`https://api.spoonacular.com/recipes/findByIngredients`)) -->
-function google(){
-	var formsCollection = document.getElementsByTagName("form");
-	var form1 = document.forms[0]
-	var first = ""
-	for(var i = 0; i < form1.length; i++){
-		if(i == 0){
-			first = form1.elements[i].value	
-		}else if(form1.elements[i].value != ""){
-			first =  first + "," + form1.elements[i].value
-		}
-	}
-	
-	<!-- window.open(`http://google.com/search?q=${first} recipe`) -->
-	var s1 = fetch(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=9105017d9e824e04a4c534ea357e2eba&ingredients=${first}`)
-	s1.then((val) => {
-		console.log(val)		
-		var s2 = val.text()
-		s2.then((text) => {
-			var obj = JSON.parse(text)
-			window.alert(obj[0].title)
-		})		
-	})
-}
-</script>
+    <ul>
+        <li>Recipe Name: Apple Pie</li>
+        <li>Recipe Name: Banana Milk</li>
+        <li>Recipe Name: Chicken and Olive Salad</li>
+        {% for i in recipes %}
+            <li>{{i}}  </li>
+        {% endfor %}
+      </ul>
+      
+      
 
 </body>
+
 </html>
