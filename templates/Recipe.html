@@ -2,19 +2,24 @@
 <html>
 <head>
 
-<title>Recipe Results</title>
+<title>{% block title %}{% endblock %}</title>
 </head>
 <body>
     <ul>
+        {% block content %} 
+        {% endblock %}
         <li>Recipe Name: Apple Pie</li>
         <li>Recipe Name: Banana Milk</li>
         <li>Recipe Name: Chicken and Olive Salad</li>
+        <li><a href ="{{ url_for('') }}"? ></li>
+        <li><a href ="{{ url_for('') }}"? ></li>
         {% for i in recipes %}
             <li>{{i}}  </li>
         {% endfor %}
       </ul>
-      
-      
+
+
+    
 
 </body>
 

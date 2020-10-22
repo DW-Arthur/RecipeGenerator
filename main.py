@@ -27,6 +27,8 @@ def login():
         return 'This is a get request'
 
 #template is a template that can be changed, templates is the blueprint that gets passed to javascript
+#Jinja is the template for flask
 @app.route('/recipe/')
 def test():
+
     return render_template('recipe.html', recipes = ["apple", "banana", "chicken"])
