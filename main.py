@@ -8,7 +8,12 @@ app = Flask(__name__)
 
 #set FLASK_APP=main.py makes every program that runs can see
 
+# login page
+@app.route('/loginpage')
+def loginpage():
+    return render_template('login.html')
 
+    
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -38,11 +43,14 @@ def login():
 def recipe():
     stuff = request.args.get('ingredients')
     data = requests.get('https://api.spoonacular.com/recipes/findByIngredients',params={"apiKey":"9105017d9e824e04a4c534ea357e2eba","ingredients":stuff})
-    recipe_names = json.loads(data.text)
+    recipe_data = json.loads(data.text)
+    information = [[]] *3
     names = []
-    for i in recipe_names:
+    for i in recipe_data:
+        information[0].append(i["title"])
+        information[1].append(i["image"])
         names.append(i["title"])
-    return render_template('recipe.html', recipes = names)
+    return render_template('recipe.html', recipes = information, titles = names)
 
 
 @app.route('/detail/')

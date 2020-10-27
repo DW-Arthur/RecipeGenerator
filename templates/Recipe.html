@@ -9,12 +9,22 @@
         {% block content %} 
         <h1>Recipe Generator</h1>
         {% endblock %}
-        <li>Recipe Name: Apple Pie</li>
-        <li>Recipe Name: Banana Milk</li>
-        <li>Recipe Name: Chicken and Olive Salad</li>
-        {% for i in recipes %}
-            <li>{{i}}  </li>
+
+        {% for i in titles%}
+        <li>{{i}}</li>
         {% endfor %}
+
+        {% for i in recipes %}
+            <li>{{i[0]}}</li>
+            <li><img src="{{i[1]}}"></li>
+        {% endfor %}
+
+        {% for i in range(len(recipes)) %}
+            {% for j in range (len(recipes[i])) %}
+                <li>{{recipes[i][j]}}</li>
+            {% endfor %}
+        {% endfor %}
+
       </ul>
 
 
