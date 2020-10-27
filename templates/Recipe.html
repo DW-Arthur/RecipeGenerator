@@ -9,27 +9,26 @@
         {% block content %} 
         <h1>Recipe Generator</h1>
         {% endblock %}
-
-        {% for i in titles%}
-        <li>{{i}}</li>
-        {% endfor %}
-
+        <!-- Goes through the base recipe based off of ingredients-->         
         {% for i in recipes %}
-            <li>{{i[0]}}</li>
-            <li><img src="{{i[1]}}"></li>
-        {% endfor %}
+            <li>{{i["title"]}}</li>
+            <li><img src="{{i['image']}}"></li>
+            <li>Missing Ingredients</li>
+            <!-- Goes through the base recipe array of dictionaries for missed ingredients info--> 
+            {% for j in i["missedIngredients"] %}
+                <li>{{j["original"]}}</li>
+                <li><img src="{{j['image']}}"></li>
+            {% endfor %}  
 
-        {% for i in range(len(recipes)) %}
-            {% for j in range (len(recipes[i])) %}
-                <li>{{recipes[i][j]}}</li>
-            {% endfor %}
-        {% endfor %}
+            {% for i in instructions %}
+                <li>{{i}}</li>
+                {% for j in i["steps"] %}
+                    <li>{{j["step"]}}</li>
+                {% endfor %}
+            {% endfor %}  
 
-      </ul>
-
-
-    
+        {% endfor %}       
+    </ul> 
 
 </body>
-
 </html>

@@ -2,7 +2,7 @@ from flask import Flask, request, abort, redirect, url_for, render_template
 import requests
 import json
 
-
+api_key = "9105017d9e824e04a4c534ea357e2eba"
 # python's calls programs' modules 
 app = Flask(__name__)
 
@@ -38,19 +38,19 @@ def login():
 #f is format string
 #with will automatically close the file
 # array of dictionaries
-#requests allows you to pass dictionary called params, and param is dictionar, Weiran is a coding god
+#requests allows you to pass dictionary called params, and param is dictionar, Weiran is a coding god, 
+#This is for querries, the recipe instruction is not a querry request, therefore don't need a second param
 @app.route('/recipe/')
 def recipe():
     stuff = request.args.get('ingredients')
-    data = requests.get('https://api.spoonacular.com/recipes/findByIngredients',params={"apiKey":"9105017d9e824e04a4c534ea357e2eba","ingredients":stuff})
+    data = requests.get('https://api.spoonacular.com/recipes/findByIngredients',params={"apiKey":api_key,"ingredients":stuff})
     recipe_data = json.loads(data.text)
-    information = [[]] *3
-    names = []
+    recipe_instructions = []
     for i in recipe_data:
-        information[0].append(i["title"])
-        information[1].append(i["image"])
-        names.append(i["title"])
-    return render_template('recipe.html', recipes = information, titles = names)
+        instructions = requests.get(f'https://api.spoonacular.com/recipes/{i["id"]}/analyzedInstructions', params={"apiKey":api_key})
+        recipe_instructions.append(json.loads(instructions.text))
+    print(recipe_instructions)
+    return render_template('recipe.html', recipes = recipe_data, instructions= recipe_instructions)
 
 
 @app.route('/detail/')
