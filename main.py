@@ -45,7 +45,7 @@ def recipe():
     stuff = request.args.get('ingredients')
     data = requests.get('https://api.spoonacular.com/recipes/findByIngredients',params={"apiKey":api_key,"ingredients":stuff})
     recipe_data = json.loads(data.text)
-    recipe_instructions = []
+    recipe_instructions =[]
     for i in recipe_data:
         instructions = requests.get(f'https://api.spoonacular.com/recipes/{i["id"]}/analyzedInstructions', params={"apiKey":api_key})
         recipe_instructions.append(json.loads(instructions.text))

@@ -20,10 +20,11 @@
                 <li><img src="{{j['image']}}"></li>
             {% endfor %}  
 
-            {% for i in instructions %}
-                <li>{{i}}</li>
-                {% for j in i["steps"] %}
-                    <li>{{j["step"]}}</li>
+            {% for k in instructions %}
+                {% for o in k %}
+                    {% for l in o["steps"] %}
+                        <li>{{l["step"]}}</li>
+                    {% endfor %}
                 {% endfor %}
             {% endfor %}  
 
